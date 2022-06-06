@@ -9,6 +9,10 @@ public class Spawner : MonoBehaviour
     public GameObject prefab;
     [Range(1,10)]
     public int spawnNumber;
+    [Range(1,10)]
+    public float spacer;
+    [Range(1,100)]
+    public int multiplicator;
     private int curNum;
 
     // Start is called before the first frame update
@@ -35,7 +39,7 @@ public class Spawner : MonoBehaviour
         }
 
         for(int i = 0; i < spawnNumber; i++){
-            var curObject = Instantiate(prefab, new Vector3( transform.position.x + ( i * 2.0f), 0, 0), Quaternion.identity, gameObject.transform);
+            var curObject = Instantiate(prefab, new Vector3( transform.position.x + ( i * 2.0f * multiplicator), transform.position.y, 0), Quaternion.identity, gameObject.transform);
         }
     }
 }
