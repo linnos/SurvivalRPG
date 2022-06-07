@@ -12,4 +12,5 @@ public class Card : ScriptableObject
     public Sprite art;
     public int cost;
     public int damage;
+    public ICard cardClass;
 }

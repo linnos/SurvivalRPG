@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(GenericReferences))]
 public class CardDisplay : MonoBehaviour
 {
     public Card card;
@@ -14,15 +15,16 @@ public class CardDisplay : MonoBehaviour
     public Text costText;
     public Text damageText;
 
-    public List<Card> cardsAvailable;
+    public GenericReferences references;
 
-    void Start()
-    {
-        if(card == null){
-            int num = Random.Range(1, cardsAvailable.Count);
-            card = cardsAvailable[num];
-        }
+    void Start() {
+    }
+    public void SetCard(Card inCard){
+        card = inCard;
+        Display();
+    }
 
+    public void Display(){
         nameText.text = card.cardName;
         descriptionText.text = card.description;
 

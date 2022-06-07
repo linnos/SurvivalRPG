@@ -4,8 +4,9 @@ using UnityEngine;
 
 public interface IDeck
 {
-    void populateDeck(List<ICard> cards);
+    void populateDeck(BaseDeck cards);
     void shuffle();
-    ICard discard(ICard card);
-    ICard drawCard(); 
+    Card discard(Card card);
+    Card drawCard(); 
+    void addCard(Card card);
 }
