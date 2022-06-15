@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardEffect_Heal : MonoBehaviour, ICard
+public class Heal : CardEffect
 {
     public void effect(){
-        Debug.Log("Healing you");
+        Debug.Log("Base Card Effect.");
     }
 }
