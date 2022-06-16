@@ -14,9 +14,14 @@ public class DisplayDeck : MonoBehaviour
 
     public bool draw;
     public bool shuffleDeck;
+    public bool addCard;
+    public bool discardCard;
 
     public int x = 0;
     public int y = 0;
+
+    ///TEST CARD TO ADD CARD
+    public Card card;
 
     void Start()
     {
@@ -35,11 +40,24 @@ public class DisplayDeck : MonoBehaviour
             shuffleDeck = false;
             shuffle();
         }
+        if(addCard){
+            addCard = false;
+            if(card != null){
+                deckToDisplay.addCard(card);
+                card = null;
+            } 
+        }
+        if(discardCard){
+            discardCard = false;
+            //TODO: Fix this once the discard method is properly implemented
+            //Fix to display the updated hand after a discard
+            deckToDisplay.discard(null);
+        }
     }
 
     private void drawCardToDisplay(){
         Card tempCard = Instantiate(deckToDisplay.drawCard());
-        CardDisplay curObject = Instantiate(prefab, new Vector3( transform.position.x + ( x++ * 2.0f * multiplicator), transform.position.y, 0), Quaternion.identity, gameObject.transform).GetComponent<CardDisplay>();
+        CardController curObject = Instantiate(prefab, new Vector3( transform.position.x + ( x++ * 2.0f * multiplicator), transform.position.y, 0), Quaternion.identity, gameObject.transform).GetComponent<CardController>();
         curObject.SetCard(tempCard);
     }
 

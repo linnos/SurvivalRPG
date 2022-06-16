@@ -7,7 +7,8 @@ public class Deck :MonoBehaviour, IDeck
     public BaseDeck deck;
     private BaseDeck tempDeck;
     private int currPosition = 0;
-    public int maxSize;
+    public int maxHandSize;
+    public int maxDeckSize;
 
     private void Awake(){
         tempDeck = Instantiate(deck);    
@@ -16,7 +17,6 @@ public class Deck :MonoBehaviour, IDeck
 
     }
 
-    // TODO: MAKE THE CARD CLASS FIRST!
     public void populateDeck(BaseDeck cards){
         deck = cards;
      }
@@ -32,13 +32,29 @@ public class Deck :MonoBehaviour, IDeck
             tempDeck.cards[i] = tmpCard;
         }
     }
-    public Card discard(Card card){
-        return null;
-    }
     public Card drawCard(){
         return tempDeck.cards[currPosition++];
-    } 
+    }
+
+    //TODO:Improve this function to 
+    //1. Discard a chosen card when draw
+    //2. Discard a chosen card on command
+    //For now this just removes the first card in the deck
+    //Need to properly keep track of what card comes next after a discard.
+    public Card discard(Card card){
+        if(tempDeck.cards.Capacity == 0){
+            Debug.Log("Deck is empty");
+            return null;
+        }
+        tempDeck.cards.RemoveAt(0);
+        return null;
+    }
+    //TODO: talk about this and perhaps change functionality depending on
+    //conditions. Should this add to main deck as well?
     public void addCard(Card card){
+        if(card == null){
+            return;
+        }
         tempDeck.cards.Add(card);
     }
     public BaseDeck getTempDeck(){

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(GenericReferences))]
-public class CardDisplay : MonoBehaviour
+public class CardController : MonoBehaviour, IPointerClickHandler
 {
     public Card card;
 
@@ -14,8 +14,6 @@ public class CardDisplay : MonoBehaviour
 
     public Text costText;
     public Text damageText;
-
-    public GenericReferences references;
 
     void Start() {
     }
@@ -32,5 +30,10 @@ public class CardDisplay : MonoBehaviour
 
         costText.text = card.cost.ToString();
         damageText.text = card.damage.ToString();
+    }
+    
+    public void OnPointerClick(PointerEventData pointerEventData)
+    {
+        card.effect(gameObject);
     }
 }
