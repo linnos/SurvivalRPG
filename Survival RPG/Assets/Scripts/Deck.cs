@@ -65,6 +65,12 @@ public class Deck : MonoBehaviour, IDeck
         }
         tempDeck.cards.Add(card);
     }
+    public void addCard(string cardName){
+        if(cardName == null){
+            return;
+        }
+        tempDeck.cards.Add(CardFactory.GetCard(cardName));
+    }
     public BaseDeck getTempDeck(){
         return tempDeck;
     }

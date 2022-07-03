@@ -22,6 +22,7 @@ public class DisplayDeck : MonoBehaviour
 
     ///TEST CARD TO ADD CARD
     public Card card;
+    public string cardName;
 
     void Start()
     {
@@ -45,6 +46,10 @@ public class DisplayDeck : MonoBehaviour
             if(card != null){
                 deckToDisplay.addCard(card);
                 card = null;
+            } 
+            if(cardName != null){
+                deckToDisplay.addCard(cardName);
+                cardName = null;
             } 
         }
         if(discardCard){
