@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deck :MonoBehaviour, IDeck
+public class Deck : MonoBehaviour, IDeck
 {
     public BaseDeck deck;
     private BaseDeck tempDeck;
@@ -11,7 +11,15 @@ public class Deck :MonoBehaviour, IDeck
     public int maxDeckSize;
 
     private void Awake(){
-        tempDeck = Instantiate(deck);    
+        //Copy base deck into temp deck
+        //tempDeck = Instantiate(deck);    
+
+        //Populate temp deck using the card factory
+        tempDeck = ScriptableObject.CreateInstance<BaseDeck>();
+        tempDeck.cards = new List<Card>();
+        foreach(Card card in deck.cards){
+            tempDeck.cards.Add(CardFactory.GetCard(card.cardName));
+        }
     }
     private void Start(){
 
