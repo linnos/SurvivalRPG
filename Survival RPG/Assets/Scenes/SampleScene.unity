@@ -171,6 +171,14 @@ MonoBehaviour:
   deckToDisplay: {fileID: 814928482}
   handSize: 3
   multiplicator: 50
+  draw: 0
+  shuffleDeck: 0
+  addCard: 0
+  discardCard: 0
+  x: 0
+  y: 0
+  card: {fileID: 0}
+  cardName: 
 --- !u!1 &532324298
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,7 +419,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck: {fileID: 11400000, guid: ab4e623ddd3b73a4e81d173368f8da6d, type: 2}
-  maxSize: 10
+  maxHandSize: 0
+  maxDeckSize: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
