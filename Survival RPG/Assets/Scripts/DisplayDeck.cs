@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DisplayDeck : MonoBehaviour
 {
-    public GameObject prefab;
+    public GameObject prefabToDisplay;
     
     public Deck deckToDisplay;
 
@@ -62,7 +62,7 @@ public class DisplayDeck : MonoBehaviour
 
     private void drawCardToDisplay(){
         Card tempCard = Instantiate(deckToDisplay.drawCard());
-        CardController curObject = Instantiate(prefab, new Vector3( transform.position.x + ( x++ * 2.0f * multiplicator), transform.position.y, 0), Quaternion.identity, gameObject.transform).GetComponent<CardController>();
+        CardController curObject = Instantiate(prefabToDisplay, new Vector3( transform.position.x + ( x++ * 2.0f * multiplicator), transform.position.y, 0), Quaternion.identity, gameObject.transform).GetComponent<CardController>();
         curObject.SetCard(tempCard);
     }
 

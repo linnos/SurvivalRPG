@@ -9,6 +9,11 @@ public class Card : ScriptableObject
     public Sprite art;
     public int cost;
 
+    public CardTemplate cardTemplate;
+    public CardImage cardImage;
+    public CardDamageTemplate damageTemplate;
+    public CardDamageIcon damageIcon;
+
     //This variable represents damage, healing, etc... Depends on the card using it.
     public int damage;
     public virtual void effect(GameObject parent) {

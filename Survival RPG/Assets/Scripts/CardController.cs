@@ -10,10 +10,16 @@ public class CardController : MonoBehaviour, IPointerClickHandler
 
     public Text nameText;
     public Text descriptionText;
-    public Image artwork;
-
     public Text costText;
     public Text damageText;
+
+    [Header("Card Images")]
+    public Image cardImage;
+    public Image cardTemplate;
+    public Image cardDamageIcon;
+    public Image cardDamageTemplate;
+
+    
 
     void Start() {
     }
@@ -26,7 +32,11 @@ public class CardController : MonoBehaviour, IPointerClickHandler
         nameText.text = card.cardName;
         descriptionText.text = card.description;
 
-        artwork.sprite = card.art;
+        cardImage.sprite = card.cardImage.art;
+        cardTemplate.sprite = card.cardTemplate.art;
+        cardDamageIcon.sprite = card.damageIcon.art;
+        cardDamageTemplate.sprite = card.damageTemplate.art;
+
 
         costText.text = card.cost.ToString();
         damageText.text = card.damage.ToString();

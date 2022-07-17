@@ -16,4 +16,8 @@ MonoBehaviour:
   description: Attacks for 3 damage
   art: {fileID: 21300000, guid: 1ef823161e0247341b670be286e8a50c, type: 3}
   cost: 3
+  cardTemplate: {fileID: 11400000, guid: 3be1101cab6d18830b03b3db086e9fe2, type: 2}
+  cardImage: {fileID: 11400000, guid: 4d114e4ef919ebd59b2a4f3a6a887e6b, type: 2}
+  damageTemplate: {fileID: 11400000, guid: ec5d25b57502805ea99dce33ba2212af, type: 2}
+  damageIcon: {fileID: 11400000, guid: 821797f3fdfcf7a1881fb17053d8f334, type: 2}
   damage: 3
