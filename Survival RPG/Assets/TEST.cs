@@ -21,18 +21,18 @@ public class TEST : MonoBehaviour
             AnimationFactory.GetAnimation(effect, target.transform.position);
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            sendEventRequest();
-        }
+        // if (Input.GetKeyDown(KeyCode.X))
+        // {
+        //     sendEventRequest();
+        // }
     }
 
     void testEvent(){
-        Debug.Log("Test Event fired");
+        Debug.Log("Test Event fired from TEST");
     }
-    void sendEventRequest(){
-        voidEvent.RaiseEvent();
-    }
+    // void sendEventRequest(){
+    //     voidEvent.RaiseEvent();
+    // }
 }
 // public enum CardTemplate{
 //     Purple,Green,Yellow,Red
