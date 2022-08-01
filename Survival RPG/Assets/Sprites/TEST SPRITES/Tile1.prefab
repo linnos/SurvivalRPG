@@ -189,6 +189,8 @@ MonoBehaviour:
   highlight: {fileID: 3269956101077986186}
   isEnabled: 1
   disableTag: Environment
+  tileEvent: {fileID: 11400000, guid: d79578d4b79fea540bd4ba0fab2f810b, type: 2}
+  character: {fileID: 0}
 --- !u!65 &-5486422069117386142
 BoxCollider:
   m_ObjectHideFlags: 0
