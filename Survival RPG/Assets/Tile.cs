@@ -43,7 +43,6 @@ public class Tile : MonoBehaviour
     private void OnMouseDown()
     {
         if(character != null){
-            Debug.Log($"Character: " + character.data.charName);
             tileEvent.RaiseEvent(character.data.charName);
         }
         else{

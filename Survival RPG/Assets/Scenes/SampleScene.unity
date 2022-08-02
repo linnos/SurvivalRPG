@@ -1014,6 +1014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onCharRefEvent: {fileID: 11400000, guid: e7bb31e299143de2ba3d90b89186fe7f, type: 2}
+  onCharSelect: {fileID: 11400000, guid: d79578d4b79fea540bd4ba0fab2f810b, type: 2}
   characters: []
 --- !u!4 &1045498538
 Transform:
