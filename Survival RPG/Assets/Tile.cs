@@ -60,9 +60,10 @@ public class Tile : MonoBehaviour
         //Removes tile if an environmental
         //object touched
         if(curCol.tag == disableTag){
-            isEnabled = false;
-            _renderer.color = new Color (0 ,0 ,0 ,0);
-            gameObject.SetActive(false);
+            // isEnabled = false;
+            // _renderer.color = new Color (0 ,0 ,0 ,0);
+            // gameObject.SetActive(false);
+            GameObject.Destroy(gameObject);
         }
 
         //If a character is on the tile, set variable
