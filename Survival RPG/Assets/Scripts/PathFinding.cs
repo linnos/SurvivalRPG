@@ -8,17 +8,17 @@ public class PathFinding : MonoBehaviour
     // A* (star) Pathfinding
     // Initialize both open and closed list
     // let the openList equal empty list of nodes
-    List<Tile> openList = new List<Tile>();
+    List<Node> openList = new List<Node>();
     // let the closedList equal empty list of nodes
-    List<Tile> closedList = new List<Tile>();
+    List<Node> closedList = new List<Node>();
 
-    public Tile[,] map;
+    public Node[,] map;
 
-    public List<Tile> findPath(Tile initialTile, Tile targetTile, List<Tile> tileList){
+    public List<Node> findPath(Node startNode, Node targetNode, List<Node> NodeList){
         
         // Add the start node
         // put the startNode on the openList (leave it's f at zero)
-        addTile(openList, initialTile);
+        openList.Add(startNode);
         while (openList.Count != 0)
         {
             
@@ -54,12 +54,12 @@ public class PathFinding : MonoBehaviour
     }
     
     //HELPER FUNCTIONS
-    public void addTile(List<Tile> list, Tile tile){
-        list.Add(tile);
+    public void addNode(List<Node> list, Node Node){
+        list.Add(Node);
     }
 
-    private void getDistance(Tile curTile, Tile targetTile){
-        // float h = Math.Abs (curTile.x - targetTile.x) + Math.Abs (curTile.y - targetTile.y);
-        
+    private void getFValue(Node startNode, Node curNode, Node targetNode){
+        float h = Math.Abs (curNode.x - targetNode.x) + Math.Abs (curNode.y - targetNode.y);
+        float g = Math.Abs (startNode.x - curNode.x) + Math.Abs (startNode.y - curNode.y);
     }
 }

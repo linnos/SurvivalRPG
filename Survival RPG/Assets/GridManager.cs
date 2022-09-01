@@ -42,6 +42,7 @@ public class GridManager : MonoBehaviour
         return (index >= 0) && (index < length);
     }
 
+    //Sets the left,right,up,down nodes for reference.
     public void setNodes(Node[,] tempMap)
     {
         for (int x = 0; x < width; x++)
