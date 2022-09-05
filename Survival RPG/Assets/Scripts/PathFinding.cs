@@ -8,63 +8,63 @@ public class PathFinding : MonoBehaviour
     // A* (star) Pathfinding
     // Initialize both open and closed list
     // let the openList equal empty list of nodes
+    [SerializeReference]
     List<Node> openList = new List<Node>();
     // let the closedList equal empty list of nodes
     List<Node> closedList = new List<Node>();
 
     public Node[,] map;
 
-    public List<Node> findPath(Node startNode, Node targetNode, List<Node> NodeList){
+    public Node findPath(Node startNode, Node targetNode){
         
         // Add the start node
         // put the startNode on the openList (leave it's f at zero)
+        startNode.parent = null;
         openList.Add(startNode);
+
+        Node curNode = startNode;
 
         while (openList.Count != 0)
         {
-            Node curNode = new Node();
+            //current node is the node in openList with the lowest F cost
+            
             foreach (Node node in openList)
             {
                 if(curNode.fValue <= node.fValue){
                     curNode = node;
-                    break;
                 }
             }
 
+            //Remove current node from open list. Add it to closed list
             openList.Remove(curNode);
             closedList.Add(curNode);
             
+            //If the target is found, stop the loop. Return node
             if(curNode.Equals(targetNode)){
-                break;
+                while(curNode.parent != null){
+                    Debug.Log("tiles: " + curNode.parent.x + ", " + curNode.parent.y );
+                    curNode = curNode.parent;
+                }
+                return curNode;
+            }
+
+            foreach (Node node in curNode.neighbors)
+            {
+                if(closedList.Contains(node)){
+                    continue;
+                }
+
+                if(!openList.Contains(node)){
+                    node.setGValue(curNode.gValue + 10);
+                    node.setHValue(getHValue(node, targetNode));
+
+                    node.parent = curNode;
+
+                    if(!openList.Contains(node)){ openList.Add(node); }                    
+                }
             }
 
         }
-        // Loop until you find the end
-        // while the openList is not empty
-        // Get the current node
-        // let the currentNode equal the node with the least f value
-        // remove the currentNode from the openList
-        // add the currentNode to the closedList
-        // Found the goal
-        // if currentNode is the goal
-        //     Congratz! You've found the end! Backtrack to get path
-        // Generate children
-        // let the children of the currentNode equal the adjacent nodes
-        
-        // for each child in the children
-            // Child is on the closedList
-            // if child is in the closedList
-                // continue to beginning of for loop
-            // Create the f, g, and h values
-            // child.g = currentNode.g + distance between child and current
-            // child.h = distance from child to end
-            // child.f = child.g + child.h
-            // Child is already in openList
-            // if child.position is in the openList's nodes positions
-                // if the child.g is higher than the openList node's g
-                    // continue to beginning of for loop
-            // Add the child to the openList
-            // add the child to the openList
 
         return null;
     }

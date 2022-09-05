@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node : MonoBehaviour
+public class Node
 {
     //Position of node
     public float x;
@@ -13,15 +13,14 @@ public class Node : MonoBehaviour
     public float hValue = 0;
 
     //Nodes directly touching this node
-    public Node left;
-    public Node right;
-    public Node up;
-    public Node down;
+    public List<Node> neighbors = new List<Node>();
+
+    public Node parent;
     
-    void start()
+    public void OnEnable()
     {
-        x = gameObject.transform.position.x;
-        y = gameObject.transform.position.y;
+        // x = gameObject.transform.position.x;
+        // y = gameObject.transform.position.y;
     }
 
     public void setGValue(float num){

@@ -11,13 +11,28 @@ public class GridManager : MonoBehaviour
     [SerializeField]
     private Tile tilePrefab;
 
+    //TEST VARIABLES DELETE LATER
+    public int x,xx, y,yy;
+    public bool search = false;
+    public PathFinding findPath;
+    Node[,] mapNodes;
+
     private void Start()
     {
         GenerateGrid();
     }
 
+    private void Update()
+    {
+        if(search){
+            search = false;
+            findPath.findPath(mapNodes[x,y], mapNodes[xx,yy]);
+
+        }
+    }
+
     void GenerateGrid(){
-        Node[,] tempMap = new Node[width, height];
+        mapNodes = new Node[width, height];
 
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
@@ -27,11 +42,13 @@ public class GridManager : MonoBehaviour
                 var isOffset = (x + y) % 2 == 1;
                 spawnedTile.Init(isOffset);
 
-                tempMap[x,y] = spawnedTile.gameObject.AddComponent<Node>();
+                mapNodes[x,y] = new Node();
+                mapNodes[x,y].x = x;
+                mapNodes[x,y].y = y;
             }
         }
 
-        setNodes(tempMap);
+        setNodes(mapNodes);
     }
 
     //Check if array is in bound
@@ -41,18 +58,24 @@ public class GridManager : MonoBehaviour
     }
 
     //Sets the left,right,up,down nodes for reference.
-    public void setNodes(Node[,] tempMap)
+    public void setNodes(Node[,] mapNodes)
     {
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                if(!tempMap[x,y].GetComponent<Tile>().isEnabled) { continue; }
+                // if(!mapNodes[x,y].GetComponent<Tile>().isEnabled) { continue; }
                 
-                tempMap[x, y].right = inBounds(x + 1, width) ? tempMap[x + 1, y] : null;
-                tempMap[x, y].left = inBounds(x - 1, width) ? tempMap[x - 1, y] : null;
-                tempMap[x, y].up = inBounds(y + 1, height) ? tempMap[x, y + 1] : null;
-                tempMap[x, y].down = inBounds(y - 1, height) ? tempMap[x, y - 1] : null;
+                if(inBounds(x + 1, width)) { mapNodes[x, y].neighbors.Add(mapNodes[x + 1, y]); }
+                if(inBounds(x - 1, width)) { mapNodes[x, y].neighbors.Add(mapNodes[x - 1, y]); }
+                if(inBounds(y + 1, height)) { mapNodes[x, y].neighbors.Add(mapNodes[x, y + 1]); }
+                if(inBounds(y - 1, height)) { mapNodes[x, y].neighbors.Add(mapNodes[x, y - 1]); }
+
+
+                // mapNodes[x, y].right = inBounds(x + 1, width) ? mapNodes[x + 1, y] : null;
+                // mapNodes[x, y].left = inBounds(x - 1, width) ? mapNodes[x - 1, y] : null;
+                // mapNodes[x, y].up = inBounds(y + 1, height) ? mapNodes[x, y + 1] : null;
+                // mapNodes[x, y].down = inBounds(y - 1, height) ? mapNodes[x, y - 1] : null;
             }
         }
     }
