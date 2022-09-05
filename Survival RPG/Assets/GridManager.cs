@@ -24,8 +24,6 @@ public class GridManager : MonoBehaviour
                 var spawnedTile = Instantiate(tilePrefab, new Vector3(x,y), Quaternion.identity, gameObject.transform);
                 spawnedTile.name = $"Tile {x} {y}";
 
-                //Keep an array of tiles in the current map.
-
                 var isOffset = (x + y) % 2 == 1;
                 spawnedTile.Init(isOffset);
 

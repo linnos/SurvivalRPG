@@ -19,9 +19,25 @@ public class PathFinding : MonoBehaviour
         // Add the start node
         // put the startNode on the openList (leave it's f at zero)
         openList.Add(startNode);
+
         while (openList.Count != 0)
         {
+            Node curNode = new Node();
+            foreach (Node node in openList)
+            {
+                if(curNode.fValue <= node.fValue){
+                    curNode = node;
+                    break;
+                }
+            }
+
+            openList.Remove(curNode);
+            closedList.Add(curNode);
             
+            if(curNode.Equals(targetNode)){
+                break;
+            }
+
         }
         // Loop until you find the end
         // while the openList is not empty
@@ -54,12 +70,9 @@ public class PathFinding : MonoBehaviour
     }
     
     //HELPER FUNCTIONS
-    public void addNode(List<Node> list, Node Node){
-        list.Add(Node);
-    }
 
-    private void getFValue(Node startNode, Node curNode, Node targetNode){
-        float h = Math.Abs (curNode.x - targetNode.x) + Math.Abs (curNode.y - targetNode.y);
-        float g = Math.Abs (startNode.x - curNode.x) + Math.Abs (startNode.y - curNode.y);
+    //gets the Manhattan distance to use as H value for the node
+    private float getHValue(Node curNode, Node targetNode){
+        return Math.Abs (curNode.x - targetNode.x) + Math.Abs (curNode.y - targetNode.y);
     }
 }
