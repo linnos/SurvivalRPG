@@ -8,12 +8,14 @@ public class PathFinding
     // A* (star) Pathfinding
     // Initialize both open and closed list
     // let the openList equal empty list of nodes
-    List<Node> openList = new List<Node>();
+    List<Node> openList;
     // let the closedList equal empty list of nodes
-    List<Node> closedList = new List<Node>();
+    List<Node> closedList;
 
     public Node findPath(Node startNode, Node targetNode){
-        
+        openList = new List<Node>();
+        // let the closedList equal empty list of nodes
+        closedList = new List<Node>();
         // Add the start node
         // put the startNode on the openList (leave it's f at zero)
         startNode.parent = null;
