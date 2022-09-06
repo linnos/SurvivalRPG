@@ -12,6 +12,8 @@ public class Node
     public float gValue = 0;
     public float hValue = 0;
 
+    public bool isEnabled = true;
+
     //Nodes directly touching this node
     public List<Node> neighbors = new List<Node>();
 

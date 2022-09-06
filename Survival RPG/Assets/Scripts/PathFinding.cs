@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PathFinding : MonoBehaviour
+public class PathFinding
 {
     // A* (star) Pathfinding
     // Initialize both open and closed list
     // let the openList equal empty list of nodes
-    [SerializeReference]
     List<Node> openList = new List<Node>();
     // let the closedList equal empty list of nodes
     List<Node> closedList = new List<Node>();
-
-    public Node[,] map;
 
     public Node findPath(Node startNode, Node targetNode){
         
@@ -22,16 +19,18 @@ public class PathFinding : MonoBehaviour
         startNode.parent = null;
         openList.Add(startNode);
 
-        Node curNode = startNode;
-
         while (openList.Count != 0)
         {
             //current node is the node in openList with the lowest F cost
-            
+            Node curNode = null;
             foreach (Node node in openList)
             {
-                if(curNode.fValue <= node.fValue){
+                if(curNode == null) { curNode = node; continue; }
+                if(node.fValue < curNode.fValue){
                     curNode = node;
+                }
+                else if(node.fValue == curNode.fValue){
+                    curNode = node.hValue < curNode.hValue ? node : curNode;
                 }
             }
 
@@ -42,15 +41,18 @@ public class PathFinding : MonoBehaviour
             //If the target is found, stop the loop. Return node
             if(curNode.Equals(targetNode)){
                 while(curNode.parent != null){
-                    Debug.Log("tiles: " + curNode.parent.x + ", " + curNode.parent.y );
+                    Debug.Log("Found path: " + curNode.x + ", " + curNode.y );
                     curNode = curNode.parent;
                 }
+                Debug.Log("Found path: " + curNode.x + ", " + curNode.y );
                 return curNode;
             }
 
+            Debug.Log($"CurNode: {curNode.x},{curNode.y}. FValue: {curNode.fValue}");
+
             foreach (Node node in curNode.neighbors)
             {
-                if(closedList.Contains(node)){
+                if(closedList.Contains(node) || !node.isEnabled){
                     continue;
                 }
 
@@ -60,10 +62,10 @@ public class PathFinding : MonoBehaviour
 
                     node.parent = curNode;
 
-                    if(!openList.Contains(node)){ openList.Add(node); }                    
+                    if(!openList.Contains(node)){ openList.Add(node); }     
+                    Debug.Log($"    Child Node: {node.x},{node.y}. FValue: {node.fValue}");               
                 }
             }
-
         }
 
         return null;

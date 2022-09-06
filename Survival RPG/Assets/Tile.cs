@@ -16,7 +16,8 @@ public class Tile : MonoBehaviour
     //Tag that is used to determine if tile is usable on spawn
     public string disableTag;
 
-    public TileEvent tileEvent = default;
+    public TileEvent tileEvent_Char = default;
+    public TileEvent tileEvent_IsEnabled = default;
 
     public Character character;
 
@@ -43,7 +44,7 @@ public class Tile : MonoBehaviour
     private void OnMouseDown()
     {
         if(character != null){
-            tileEvent.RaiseEvent(character.data.charName);
+            tileEvent_Char.RaiseEvent(character.data.charName);
         }
         else{
             Debug.Log($"There is no character on this tile");
@@ -60,15 +61,19 @@ public class Tile : MonoBehaviour
         //Removes tile if an environmental
         //object touched
         if(curCol.tag == disableTag){
-            // isEnabled = false;
-            // _renderer.color = new Color (0 ,0 ,0 ,0);
-            // gameObject.SetActive(false);
+            isEnabled = false;
+            Debug.Log($"{isEnabled.ToString()} {gameObject.transform.position.x} {gameObject.transform.position.y}");
+            tileEvent_IsEnabled.RaiseEvent($"{isEnabled.ToString()} {gameObject.transform.position.x} {gameObject.transform.position.y}");
+            _renderer.color = new Color (0 ,0 ,0 ,0);
+            gameObject.SetActive(false);
             GameObject.Destroy(gameObject);
         }
 
         //If a character is on the tile, set variable
         if(curCol.GetComponent<Character>() != null){
             character = curCol.GetComponent<Character>();
+            isEnabled = false;
+            tileEvent_IsEnabled.RaiseEvent($"{isEnabled.ToString()} {gameObject.transform.position.x} {gameObject.transform.position.y}");
         }
         
     }
@@ -76,6 +81,9 @@ public class Tile : MonoBehaviour
     {
         if(character != null){
             character = null;
+
+            isEnabled = true;
+            tileEvent_IsEnabled.RaiseEvent($"{isEnabled.ToString()} {gameObject.transform.position.x} {gameObject.transform.position.y}");
         }
     }
 }

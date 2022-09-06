@@ -17,17 +17,26 @@ public class GridManager : MonoBehaviour
     public PathFinding findPath;
     Node[,] mapNodes;
 
+    //Events to listen for
+    [SerializeField]
+    private TileEvent onNodeEnableDisable = default;
+
     private void Start()
     {
-        GenerateGrid();
+        onNodeEnableDisable.onTileEvent += enableDisableNode;    
+
+        findPath = new PathFinding();
+        GenerateGrid(); 
     }
 
     private void Update()
     {
         if(search){
             search = false;
-            findPath.findPath(mapNodes[x,y], mapNodes[xx,yy]);
-
+            Debug.Log(mapNodes[x,y].x);
+            Debug.Log(mapNodes[xx,yy].x);
+            Node test = findPath.findPath(mapNodes[x,y], mapNodes[xx,yy]);
+            Debug.Log($"test x and y coordinates: {test.x},{test.y}");
         }
     }
 
@@ -38,6 +47,10 @@ public class GridManager : MonoBehaviour
             for(int y = 0; y < height; y++){
                 var spawnedTile = Instantiate(tilePrefab, new Vector3(x,y), Quaternion.identity, gameObject.transform);
                 spawnedTile.name = $"Tile {x} {y}";
+
+                if(!spawnedTile.isEnabled){
+                    continue;
+                }
 
                 var isOffset = (x + y) % 2 == 1;
                 spawnedTile.Init(isOffset);
@@ -78,5 +91,17 @@ public class GridManager : MonoBehaviour
                 // mapNodes[x, y].down = inBounds(y - 1, height) ? mapNodes[x, y - 1] : null;
             }
         }
+    }
+
+    //Enable/Disable node
+    public void enableDisableNode(string info){
+        string[] data = info.Split(' ');
+        foreach (var item in data)
+        {
+            Debug.Log($"Information on disabled node: {item}");
+        }      
+        mapNodes[int.Parse(data[1]),int.Parse(data[2])].isEnabled = bool.Parse(data[0]);  
+
+        
     }
 }

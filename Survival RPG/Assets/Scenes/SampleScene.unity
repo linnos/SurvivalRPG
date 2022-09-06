@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641222, b: 0.57481664, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -587,53 +587,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _move: 0
---- !u!1 &431071265
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 431071266}
-  - component: {fileID: 431071267}
-  m_Layer: 0
-  m_Name: PathfindingTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &431071266
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431071265}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1837030881}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &431071267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431071265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a08572592faf47d4a9467716282166a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startNode: {fileID: 0}
-  targetNode: {fileID: 0}
-  startPathFinding: 0
 --- !u!1 &452949266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,6 +1184,12 @@ MonoBehaviour:
   width: 4
   height: 4
   tilePrefab: {fileID: -1321307633525118866, guid: a649488bcc5687847ae7f1c30a09c2e3, type: 3}
+  x: 0
+  xx: 0
+  y: 0
+  yy: 0
+  search: 0
+  onNodeEnableDisable: {fileID: 0}
 --- !u!4 &1496238377
 Transform:
   m_ObjectHideFlags: 0
@@ -1510,8 +1469,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 431071266}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1547,6 +1505,12 @@ MonoBehaviour:
   width: 28
   height: 16
   tilePrefab: {fileID: 86098671594327991, guid: 14c368920fca54448b6394d96c6d2886, type: 3}
+  x: 5
+  xx: 8
+  y: 1
+  yy: 2
+  search: 0
+  onNodeEnableDisable: {fileID: 11400000, guid: c707b492ad7e8db47aa9582b11bd3db4, type: 2}
 --- !u!4 &2060572340
 Transform:
   m_ObjectHideFlags: 0
