@@ -33,10 +33,10 @@ public class GridManager : MonoBehaviour
     {
         if(search){
             search = false;
-            Debug.Log(mapNodes[x,y].x);
-            Debug.Log(mapNodes[xx,yy].x);
+            Debug.Log(mapNodes[x,y].X);
+            Debug.Log(mapNodes[xx,yy].X);
             Node test = findPath.findPath(mapNodes[x,y], mapNodes[xx,yy]);
-            Debug.Log($"test x and y coordinates: {test.x},{test.y}");
+            Debug.Log($"test x and y coordinates: {test.X},{test.Y}");
         }
     }
 
@@ -55,9 +55,9 @@ public class GridManager : MonoBehaviour
                 var isOffset = (x + y) % 2 == 1;
                 spawnedTile.Init(isOffset);
 
-                mapNodes[x,y] = new Node();
-                mapNodes[x,y].x = x;
-                mapNodes[x,y].y = y;
+                mapNodes[x,y] = new Node(0,0);
+                mapNodes[x,y].setX(x);
+                mapNodes[x,y].setY(y);
             }
         }
 
@@ -100,7 +100,7 @@ public class GridManager : MonoBehaviour
         {
             Debug.Log($"Information on disabled node: {item}");
         }      
-        mapNodes[int.Parse(data[1]),int.Parse(data[2])].isEnabled = bool.Parse(data[0]);  
+        mapNodes[int.Parse(data[1]),int.Parse(data[2])].setIsEnabled(bool.Parse(data[0]));  
 
         
     }

@@ -4,34 +4,53 @@ using UnityEngine;
 
 public class Node
 {
-    //Position of node
-    public float x;
-    public float y;
-    //F value of tile for use in A* algorithm
-    public float fValue = 0;
-    public float gValue = 0;
-    public float hValue = 0;
+    private int x;
+    private int y;
+    private float fValue = 0;
+    private float gValue = 0;
+    private float hValue = 0;
+    private bool isEnabled = true;
 
-    public bool isEnabled = true;
+    public int X { get => x; }
+    public int Y { get => y; }
+    public float FValue { get => fValue; }
+    public float GValue { get => gValue; }
+    public float HValue { get => hValue; }
+    public bool IsEnabled { get => isEnabled; }
 
-    //Nodes directly touching this node
     public List<Node> neighbors = new List<Node>();
-
     public Node parent;
-    
-    public void OnEnable()
+
+    public Node(int x, int y, bool isEnabled = true)
     {
-        // x = gameObject.transform.position.x;
-        // y = gameObject.transform.position.y;
+        this.x = x;
+        this.y = y;
+        this.isEnabled = isEnabled;
     }
 
-    public void setGValue(float num){
+    public void setGValue(float num)
+    {
         gValue = num;
         fValue = gValue + hValue;
     }
 
-    public void setHValue(float num){
+    public void setHValue(float num)
+    {
         hValue = num;
         fValue = gValue + hValue;
+    }
+
+    public void setX(int num)
+    {
+        x = num;
+    }
+
+    public void setY(int num)
+    {
+        y = num;
+    }
+    public void setIsEnabled(bool enabled)
+    {
+        isEnabled = enabled;
     }
 }

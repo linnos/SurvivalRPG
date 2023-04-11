@@ -28,11 +28,11 @@ public class PathFinding
             foreach (Node node in openList)
             {
                 if(curNode == null) { curNode = node; continue; }
-                if(node.fValue < curNode.fValue){
+                if(node.FValue < curNode.FValue){
                     curNode = node;
                 }
-                else if(node.fValue == curNode.fValue){
-                    curNode = node.hValue < curNode.hValue ? node : curNode;
+                else if(node.FValue == curNode.FValue){
+                    curNode = node.HValue < curNode.HValue ? node : curNode;
                 }
             }
 
@@ -43,31 +43,34 @@ public class PathFinding
             //If the target is found, stop the loop. Return node
             if(curNode.Equals(targetNode)){
                 while(curNode.parent != null){
-                    Debug.Log("Found path: " + curNode.x + ", " + curNode.y );
+                    Debug.Log("Found path: " + curNode.X + ", " + curNode.Y );
                     curNode = curNode.parent;
                 }
-                Debug.Log("Found path: " + curNode.x + ", " + curNode.y );
+                Debug.Log("Found path: " + curNode.X + ", " + curNode.Y );
                 return curNode;
             }
 
-            Debug.Log($"CurNode: {curNode.x},{curNode.y}. FValue: {curNode.fValue}");
+            Debug.Log($"CurNode: {curNode.X},{curNode.Y}. FValue: {curNode.FValue}");
 
             foreach (Node node in curNode.neighbors)
             {
-                if(closedList.Contains(node) || !node.isEnabled){
+                if(closedList.Contains(node) || !node.IsEnabled){
                     continue;
                 }
 
-                if(!openList.Contains(node)){
-                    node.setGValue(curNode.gValue + 10);
+                float newGValue = curNode.GValue + 10;
+
+                if(!openList.Contains(node) || newGValue < node.GValue){
+                    node.setGValue(newGValue);
                     node.setHValue(getHValue(node, targetNode));
 
                     node.parent = curNode;
 
-                    if(!openList.Contains(node)){ openList.Add(node); }     
-                    Debug.Log($"    Child Node: {node.x},{node.y}. FValue: {node.fValue}");               
+                    if(!openList.Contains(node)){ openList.Add(node); }
+                    Debug.Log($"    Child Node: {node.X},{node.Y}. FValue: {node.FValue}");
                 }
             }
+
         }
 
         return null;
@@ -77,6 +80,6 @@ public class PathFinding
 
     //gets the Manhattan distance to use as H value for the node
     private float getHValue(Node curNode, Node targetNode){
-        return Math.Abs (curNode.x - targetNode.x) + Math.Abs (curNode.y - targetNode.y);
+        return Math.Abs (curNode.X - targetNode.X) + Math.Abs (curNode.Y - targetNode.Y);
     }
 }
