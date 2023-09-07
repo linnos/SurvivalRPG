@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7ea4f38b9544948866952b2bf7a5bb, type: 3}
+  m_Name: Attack Spell 1
+  m_EditorClassIdentifier: 
+  cardName: Attack Spell 1
+  description: Attacks for 1 damage
+  art: {fileID: 21300000, guid: 1ef823161e0247341b670be286e8a50c, type: 3}
+  cost: 1
+  cardTemplate: {fileID: 11400000, guid: 3be1101cab6d18830b03b3db086e9fe2, type: 2}
+  cardImage: {fileID: 11400000, guid: 4d114e4ef919ebd59b2a4f3a6a887e6b, type: 2}
+  damageTemplate: {fileID: 11400000, guid: ec5d25b57502805ea99dce33ba2212af, type: 2}
+  damageIcon: {fileID: 11400000, guid: 821797f3fdfcf7a1881fb17053d8f334, type: 2}
+  damage: 1
